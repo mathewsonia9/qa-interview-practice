@@ -110,18 +110,7 @@ async function testDeletePost() {
   }
 }
 
-// Run all tests
-async function runAllTests() {
-  await testGetPost();
-  await testCreatePost();
-  await testUpdatePost();
-  await testPatchPost();
-  await testDeletePost();
-  await randomApi();
-
-  console.log("\n✅ All tests completed!");
-}
-
+// SAMPLE POST Test
 async function randomApi(){
     const response= await fetch("https://jsonplaceholder.typicode.com/posts/999",{
         method: "POST",
@@ -147,4 +136,15 @@ async function randomApi(){
     }
 }
 
+// Run all tests
+async function runAllTests() {
+  await testGetPost();
+  await testCreatePost();
+  await testUpdatePost();
+  await testPatchPost();
+  await testDeletePost();
+  await randomApi();
+
+  console.log("\n✅ All tests completed!");
+}
 runAllTests();
