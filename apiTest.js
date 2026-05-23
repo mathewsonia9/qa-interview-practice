@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { title } = require('node:process');
 
 // GET Test
 async function testGetPost() {
@@ -116,7 +117,34 @@ async function runAllTests() {
   await testUpdatePost();
   await testPatchPost();
   await testDeletePost();
+  await randomApi();
+
   console.log("\n✅ All tests completed!");
+}
+
+async function randomApi(){
+    const response= await fetch("https://jsonplaceholder.typicode.com/posts/999",{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: "mock interview_test",
+            body: "practice test_test",
+            userId: 1
+
+        })
+    })
+
+    const data= response.json();
+     console.log("\n--- MY Test ---");
+    if(response.status===201 && data.title==="mock interview_test"){
+        console.log("**Testing**");
+        console.log("Status-Check: PASS-got ",response.status);
+    }
+    else{
+        console.log("Status-Check: FAIL-got ",response.status);
+    }
 }
 
 runAllTests();
